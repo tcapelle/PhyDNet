@@ -13,7 +13,7 @@ class PhyCell_Cell(nn.Module):
         self.bias = bias
         
         self.F = nn.Sequential()
-        self.F.add_module('bn1',nn.GroupNorm( 4 ,input_dim))          
+        self.F.add_module('bn1',nn.BatchNorm2d(input_dim))          
         self.F.add_module('conv1', nn.Conv2d(in_channels=input_dim, out_channels=F_hidden_dim, kernel_size=self.kernel_size, stride=(1,1), padding=self.padding))  
         #self.F.add_module('f_act1', nn.LeakyReLU(negative_slope=0.1))        
         self.F.add_module('conv2', nn.Conv2d(in_channels=F_hidden_dim, out_channels=input_dim, kernel_size=(1,1), stride=(1,1), padding=(0,0)))
